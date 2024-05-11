@@ -9,11 +9,11 @@ class PartnerState(StatesGroup):
     phone_number = State()
     location = State()
     masul = State()
-    price = State() # xodm kerakda
-    job = State() # xodm kerakda
+    price = State() # xodim kerakda
+    job = State() # xodim kerakda
     murojat_qilish = State
-    maosh = State() # xodm kerakda
-    qoshimcha = State() # xodm kerakda
+    maosh = State() # xodim kerakda
+    qoshimcha = State() # xodim kerakda
     time = State()
     goal = State()
 
