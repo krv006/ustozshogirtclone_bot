@@ -220,3 +220,61 @@ ADMIN = os.getenv('ADMIN')
 # """
 #     await message.answer(text)
 #     await message.answer('Saqlandi')
+
+
+
+#
+#
+#
+# async def texnolgyga(message, state):
+#     await message.answer('''📚 Texnologiya:
+#
+# Talab qilinadigan texnologiyalarni kiriting?
+# Texnologiya nomlarini vergul bilan ajrating. Masalan,
+#
+# <i>Java, C++, C#</i>''')
+#
+#     await state.set_state(States.texnology)
+#
+#
+# async def to_murojat_time(message, state):
+#     await message.answer('''🕰 Murojaat qilish vaqti:
+#
+# Qaysi vaqtda murojaat qilish mumkin?
+# Masalan, 9:00 - 18:00''')
+#     await state.set_state(States.murojat_time)
+#
+#
+# @user_router.message(States.idora)
+# async def idora(message: Message, state: FSMContext):
+#     await state.update_data(idora=message.text)
+#     await texnolgyga(message, state)
+#
+#
+# @user_router.message(States.full_name)
+# async def first_last_name(message: Message, state: FSMContext):
+#     await state.update_data(full_name=message.text)
+#     if States.category == 'Sherik':
+#         await texnolgyga(message, state)
+#     else:
+#         await message.answer('''🕑 Yosh:
+#
+# Yoshingizni kiriting?
+# Masalan: 19''')
+#         await state.set_state(States.yosh)
+#
+#
+# @user_router.message(States.yosh)
+# async def yosh(message: Message, state: FSMContext):
+#     await state.update_data(yosh=message.text)
+#     await texnolgyga(message, state)
+#
+#
+# @user_router.message(States.texnology)
+# async def texno(message: Message, state: FSMContext):
+#     await state.update_data(texnology=message.text, telegram=message.from_user.username)
+#     await state.set_state(States.aloqa)
+#     await message.answer('''📞 Aloqa:
+#
+# Bog`lanish uchun raqamingizni kiriting?
+# Masalan, +998 90 123 45 67''')

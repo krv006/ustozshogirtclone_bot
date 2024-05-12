@@ -3,13 +3,9 @@ from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, KeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
-
 from state import PartnerState, Hodim
 
 main_router = Router()
-
-def yosh()
-
 
 
 @main_router.message(CommandStart())
@@ -23,14 +19,34 @@ async def start(message: Message):
         reply_markup=rkb.as_markup(resize_keyboard=True))
 
 
-@main_router.message(F.text.startswith(('Ish', 'Ustoz', 'Shogird')))
+@main_router.message(F.text.startswith(('Sherik', 'Ish', 'Ustoz', 'Shogird')))
 async def partner(message: Message, state: FSMContext):
-    await message.answer(
-        "<b>Ish joyi topish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
-        "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
-        "arizangiz Adminga yuboriladi."
-    )
     await state.update_data(button_name=message.text)
+    data = await state.get_data()
+    if data['button_name'].startswith('Ish'):
+        await message.answer(
+            "<b>Ish joyi topish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+            "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
+            "arizangiz Adminga yuboriladi."
+        )
+    elif data['button_name'].startswith('Ustoz'):
+        await message.answer(
+            "<b>Ustoz topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+            "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
+            "arizangiz Adminga yuboriladi."
+        )
+    elif data['button_name'].startswith('Sherik'):
+        await message.answer(
+            "<b>Sherik topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+            "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
+            "arizangiz Adminga yuboriladi."
+        )
+    else:
+        await message.answer(
+            "<b>Shogirt topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+            "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
+            "arizangiz Adminga yuboriladi."
+        )
     await state.set_state(PartnerState.full_name)
     await message.answer("<b>Ism, familiyangizni kiriting?</b>")
 
@@ -38,10 +54,14 @@ async def partner(message: Message, state: FSMContext):
 @main_router.message(PartnerState.full_name)
 async def full_name(message: Message, state: FSMContext):
     await state.update_data(full_name=message.text)
-    await state.set_state(PartnerState.age)
-    await message.answer("<b>🕑 Yosh: </b>\n\n"
-                         "Yoshingizni kiriting?"
-                         "Masalan, 19")
+    data = await state.get_data()
+    if data['button_name'] == 'Sherik':
+        await state.set_state(PartnerState.texnology)
+    else:
+        await message.answer("<b>🕑 Yosh: </b>\n\n"
+                             "Yoshingizni kiriting?"
+                             "Masalan, 19")
+        await state.set_state(PartnerState.age)
 
 
 @main_router.message(PartnerState.age)
@@ -131,6 +151,18 @@ async def register_goal(message: Message, state: FSMContext):
 🕰 Murojaat qilish vaqti: {data.get('time')}
 🔎 Maqsad: {data.get('goal')}
 """
+    if data['button_name'].startswith('Sherik'):
+        text = f"""<b>Sherik kerak:</b>\n\n👨‍💼 Sherik: {data.get('full_name')}
+📚 Texnologiya: {data.get('technology')}
+🇺🇿 Telegram: @{str(message.from_user.username)}
+📞 Aloqa: {data.get('phone_number')}
+🌐 Hudud: {data.get('location')}
+💰 Narxi: {data.get('price')}
+👨🏻‍💻 Kasbi: {data.get('job')}
+🕰 Murojaat qilish vaqti: {data.get('time')}
+🔎 Maqsad: {data.get('goal')}
+
+            """
     await message.answer(text)
     await message.answer('Saqlandi')
 
@@ -138,7 +170,7 @@ async def register_goal(message: Message, state: FSMContext):
 @main_router.message(F.text.startswith(('Hodim')))
 async def partner(message: Message, state: FSMContext):
     await message.answer(
-        "<b>Ish joyi topish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+        "<b>Hodim topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
         "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
         "arizangiz Adminga yuboriladi."
     )
