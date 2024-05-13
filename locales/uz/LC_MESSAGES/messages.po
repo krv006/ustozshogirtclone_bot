@@ -1,0 +1,129 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-13 10:30+0500\n"
+"PO-Revision-Date: 2024-05-13 10:29+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: handlers.py:19
+msgid "Tilni tanlang: "
+msgstr ""
+
+#: handlers.py:26
+msgid "Uzbek tili tanlandi"
+msgstr ""
+
+#: handlers.py:28
+msgid "Ingiliz tili tanlandi"
+msgstr ""
+
+#: handlers.py:33
+msgid ""
+"<b>{category} topish uchun ariza berish</b>\n"
+"Hozir sizga birnecha savollar beriladi. \n"
+"Har biriga javob bering. \n"
+"Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz "
+"Adminga yuboriladi."
+msgstr ""
+
+#: handlers.py:38
+msgid "<b>Ism, familiyangizni kiriting?</b>"
+msgstr ""
+
+#: handlers.py:48 handlers.py:64 handlers.py:175
+msgid ""
+"<b>📚 Texnologiya:</b>\n"
+"\n"
+"Talab qilinadigan texnologiyalarni kiriting?\n"
+"Texnologiya nomlarini vergul bilan ajrating.\n"
+"\n"
+"<em>Masalan: Java, C++, C#</em>"
+msgstr ""
+
+#: handlers.py:54
+msgid ""
+"<b>🕑 Yosh: </b>\n"
+"\n"
+"Yoshingizni kiriting?Masalan, 19"
+msgstr ""
+
+#: handlers.py:74 handlers.py:185
+msgid ""
+"<b>📞 Aloqa:</b>\n"
+"\n"
+"Bog`lanish uchun raqamingizni kiriting?\n"
+"Masalan: +998 90 123 45 67"
+msgstr ""
+
+#: handlers.py:83 handlers.py:194
+msgid ""
+"<b>🌐 Hudud: </b>\n"
+"\n"
+"Qaysi hududdansiz?\n"
+"Viloyat nomi, Toshkent shahar yoki Respublikani kiriting."
+msgstr ""
+
+#: handlers.py:92 handlers.py:219
+msgid ""
+"<b>💰 Narxi:</b>\n"
+"\n"
+"Tolov qilasizmi yoki Tekinmi??\n"
+"Kerak bo`lsa, Summani kiriting?"
+msgstr ""
+
+#: handlers.py:101
+msgid ""
+"<b>👨🏻‍💻 Kasbi: </b>\n"
+"\n"
+"Ishlaysizmi yoki o`qiysizmi?\n"
+"Masalan, Talaba"
+msgstr ""
+
+#: handlers.py:110 handlers.py:203
+msgid ""
+"<b>🕰 Murojaat qilish vaqti: </b>\n"
+"\n"
+"Qaysi vaqtda murojaat qilish mumkin?\n"
+"Masalan, 9:00 - 18:00"
+msgstr ""
+
+#: handlers.py:119
+msgid ""
+"<b>🔎 Maqsad: </b>\n"
+"\n"
+"Maqsadingizni qisqacha yozib bering."
+msgstr ""
+
+#: handlers.py:161
+msgid ""
+"<b>Hodim topshirish uchun ariza berish</b>\n"
+"\n"
+"Hozir sizga birnecha savollar beriladi.\n"
+"Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA "
+"tugmasini bosing va\n"
+"arizangiz Adminga yuboriladi."
+msgstr ""
+
+#: handlers.py:212
+msgid "<b>🕰 Ish vaqtini kiriting? </b>"
+msgstr ""
+
+#: handlers.py:228
+msgid ""
+"<b>‼️ Qo`shimcha ma`lumotlar? </b>\n"
+"\n"
+msgstr ""
+

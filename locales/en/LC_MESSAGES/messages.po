@@ -1,0 +1,180 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-13 10:30+0500\n"
+"PO-Revision-Date: 2024-05-13 10:29+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: handlers.py:19
+msgid "Tilni tanlang: "
+msgstr "Change language"
+
+#: handlers.py:26
+msgid "Uzbek tili tanlandi"
+msgstr "The Uzbek language was selected"
+
+#: handlers.py:28
+msgid "Ingiliz tili tanlandi"
+msgstr "The Engilish language was selected"
+
+#: handlers.py:33
+msgid ""
+"<b>{category} topish uchun ariza berish</b>\n"
+"Hozir sizga birnecha savollar beriladi. \n"
+"Har biriga javob bering. \n"
+"Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz "
+"Adminga yuboriladi."
+msgstr "<b>Apply to find {category}</b>\n"
+"You will now be asked a few questions. \n"
+"Answer each one. \n"
+"At the end, if everything is correct, press the YES button and your application"
+"Sent to admin.</b>"
+
+#: handlers.py:38
+msgid "<b>Ism, familiyangizni kiriting?</b>"
+msgstr "<b>Enter your first and last name?</b>"
+
+#: handlers.py:48 handlers.py:64 handlers.py:175
+msgid ""
+"<b>📚 Texnologiya:</b>\n"
+"\n"
+"Talab qilinadigan texnologiyalarni kiriting?\n"
+"Texnologiya nomlarini vergul bilan ajrating.\n"
+"\n"
+"<em>Masalan: Java, C++, C#</em>"
+msgstr "<b>📚 Technology:</b>\n"
+"\n"
+"Enter required technologies?\n"
+"Separate technology names with commas.\n"
+"\n"
+"<em>For example: Java, C++, C#</em>"
+
+#: handlers.py:54
+msgid ""
+"<b>🕑 Yosh: </b>\n"
+"\n"
+"Yoshingizni kiriting?Masalan, 19"
+msgstr
+""
+"<b>🕑 Age: </b>\n"
+"\n"
+"Enter your age? For example, 19"
+
+
+#: handlers.py:74 handlers.py:185
+msgid ""
+"<b>📞 Aloqa:</b>\n"
+"\n"
+"Bog`lanish uchun raqamingizni kiriting?\n"
+"Masalan: +998 90 123 45 67"
+msgstr
+""
+"<b>📞 Contact:</b>\n"
+"\n"
+"Enter your contact number?\n"
+"For example: +998 90 123 45 67"
+
+#: handlers.py:83 handlers.py:194
+msgid ""
+"<b>🌐 Hudud: </b>\n"
+"\n"
+"Qaysi hududdansiz?\n"
+"Viloyat nomi, Toshkent shahar yoki Respublikani kiriting."
+msgstr
+""
+"<b>🌐 Region: </b>\n"
+"\n"
+"What area are you from?\n"
+"Enter the name of the region, Tashkent city or Republic."
+
+#: handlers.py:92 handlers.py:219
+msgid ""
+"<b>💰 Narxi:</b>\n"
+"\n"
+"Tolov qilasizmi yoki Tekinmi??\n"
+"Kerak bo`lsa, Summani kiriting?"
+msgstr
+""
+"<b>💰 Price:</b>\n"
+"\n"
+"Paid or Free??\n"
+"If necessary, enter Amount?"
+
+#: handlers.py:101
+msgid ""
+"<b>👨🏻‍💻 Kasbi: </b>\n"
+"\n"
+"Ishlaysizmi yoki o`qiysizmi?\n"
+"Masalan, Talaba"
+msgstr
+""
+"<b>👨🏻‍💻 Occupation: </b>\n"
+"\n"
+"Do you work or study?\n"
+"For example, Student"
+
+#: handlers.py:110 handlers.py:203
+msgid ""
+"<b>🕰 Murojaat qilish vaqti: </b>\n"
+"\n"
+"Qaysi vaqtda murojaat qilish mumkin?\n"
+"Masalan, 9:00 - 18:00"
+msgstr ""
+"<b>🕰 Application time: </b>\n"
+"\n"
+"When can I apply?\n"
+"For example, 9:00 - 18:00"
+
+#: handlers.py:119
+msgid ""
+"<b>🔎 Maqsad: </b>\n"
+"\n"
+"Maqsadingizni qisqacha yozib bering."
+msgstr ""
+"<b>🔎 Target: </b>\n"
+"\n"
+"Briefly write down your purpose."
+
+#: handlers.py:161
+msgid ""
+"<b>Hodim topshirish uchun ariza berish</b>\n"
+"\n"
+"Hozir sizga birnecha savollar beriladi.\n"
+"Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA "
+"tugmasini bosing va\n"
+"arizangiz Adminga yuboriladi."
+msgstr
+""
+"<b>Apply for employment</b>\n"
+"\n"
+"You will now be asked a few questions.\n"
+"Answer each one. If all are correct at the end, YES"
+"click and\n"
+"your application will be sent to Admin."
+
+#: handlers.py:212
+msgid "<b>🕰 Ish vaqtini kiriting? </b>"
+msgstr "<b>🕰 Enter the work time? </b>"
+
+#: handlers.py:228
+msgid ""
+"<b>‼️ Qo`shimcha ma`lumotlar? </b>\n"
+"\n"
+msgstr
+""
+"<b>‼️ Additional information? </b>\n"
+"\n"
+
