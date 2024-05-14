@@ -1,10 +1,10 @@
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove
+from aiogram.types import Message, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove, KeyboardButton
 from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
-from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 
 from state import PartnerState, Hodim
 
@@ -20,21 +20,44 @@ async def start_handler(message: Message):
 
 
 @main_router.callback_query(F.data.in_(['uz', 'en']))
-async def uz_handler(callback: CallbackQuery):
-    rkb = ReplyKeyboardRemove()
-    if callback.message.text == 'uz':
-        await callback.message.answer(_('Uzbek tili tanlandi'), reply_markup=rkb)
+async def uz_handler(callback: CallbackQuery, state: FSMContext):
+    lang_code = callback.data
+    await state.update_data(locale=lang_code)
+    await callback.message.delete()
+    if 'uz' == lang_code:
+        await callback.message.answer(_('Uzbek tili tanlandi', locale=lang_code))
     else:
-        await callback.message.answer(_('Ingiliz tili tanlandi'), reply_markup=rkb)
+        await callback.message.answer(_('Ingiliz tili tanlandi', locale=lang_code))
+    rkb = ReplyKeyboardBuilder()
+    rkb.add(KeyboardButton(text=_('Sherik kerak', locale=lang_code)),
+            KeyboardButton(text=_('Ish joyi kerak', locale=lang_code)),
+            KeyboardButton(text=_('Hodim kerak', locale=lang_code)),
+            KeyboardButton(text=_('Ustoz kerak', locale=lang_code)))
+    rkb.adjust(2, repeat=True)
+    rkb.row(KeyboardButton(text=_('Shogird kerak', locale=lang_code)))
+    await callback.message.answer(
+        _('Assalomu alaykum {first_name} \nUstozShogird kanalining rasmiy botiga xush kelibsiz!',
+          locale=lang_code).format(
+            first_name=callback.from_user.first_name),
+        reply_markup=rkb.as_markup(resize_keyboard=True))
 
+@main_router.message(F.text.startswith('Hodim') | F.text.startswith('Worker'))
+async def partner(message: Message, state: FSMContext):
+    await message.answer(_(
+        "<b>Hodim topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
+        "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
+        "arizangiz Adminga yuboriladi."
+    ))
+    await state.update_data(button_name=message.text)
+    await state.set_state(Hodim.idora)
+    await message.answer(_("<b>🎓 Idora nomi??</b>"))
 
-@main_router.message(F.text.endswith('kerak'))
+@main_router.message(F.text.endswith('kerak') | F.text.endswith('need'))
 async def kerak_command(message: Message, state: FSMContext):
-    await message.answer(_('''<b>{category} topish uchun ariza berish</b>
-Hozir sizga birnecha savollar beriladi. 
-Har biriga javob bering. 
-Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.''').format(
-        category=' '.join(message.text.split()[:-1])))
+    await message.answer(
+        _('<b>{category} topish uchun ariza berish</b>\nHozir sizga birnecha savollar beriladi.\nHar biriga javob bering.\nOxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yuboriladi.').format(
+            category=' '.join(message.text.split()[:-1])))
+    await state.update_data(button_name=message.text)
     await message.answer(_('<b>Ism, familiyangizni kiriting?</b>'))
     await state.set_state(PartnerState.full_name)
     await state.update_data(category=' '.join(message.text.split()[:-1]))
@@ -44,7 +67,7 @@ Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz Adminga yu
 async def full_name(message: Message, state: FSMContext):
     await state.update_data(full_name=message.text)
     data = await state.get_data()
-    if data['button_name'].startswith(__('Sherik')):
+    if data['category'].startswith('Sherik'):
         await message.answer(_("<b>📚 Texnologiya:</b>\n\n"
                                "Talab qilinadigan texnologiyalarni kiriting?\nTexnologiya nomlarini vergul bilan ajrating."
                                "\n\n"
@@ -126,46 +149,30 @@ async def register_goal(message: Message, state: FSMContext):
     data = await state.get_data()
     await state.clear()
     text = ""
-    if data['button_name'].startswith(__('Ish')):
-        text += "<b>Ish joyi kerak:</b>\n\n👨‍💼 Xodim: {full_name}\n".format(full_name=data.get('full_name'))
-    elif data['button_name'].startswith(__('Ustoz')):
-        text += "<b>Ustoz kerak:</b>\n\n👨‍💼 Ustoz: {full_name}\n".format(full_name=data.get('full_name'))
+    if data['button_name'].startswith(str(__('Sherik'))):
+        text += "👨‍💼 Sherik: {full_name}\n📚 Texnologiya: {technology}\n🇺🇿 Telegram: @{telegram}\n📞 Aloqa: {phone_number}\n🌐 Hudud: {hudud}\n💰 Narxi: {price}\n👨🏻‍💻 Kasbi: {job}\n🕰 Murojaat qilish vaqti: {time}\n🔎 Maqsad: {goal}".format(
+            full_name=data.get('full_name'), age=data.get('age'), technology=data.get('technology'),
+            telegram=str(message.from_user.username),
+            phone_number=data.get('phone_number'), hudud=data.get('location'), price=data.get('price'),
+            job=data.get('job'), time=data.get('time'),
+            goal=data.get('goal'))
+        await message.answer(text)
+        await message.answer('Saqlandi')
     else:
-        text += "<b>Shogird kerak:</b>\n\n👨‍💼 Shogird: {full_name}\n".format(full_name=data.get('full_name'))
-    text += f"""🕑 Yosh: {data.get('age')}
-📚 Texnologiya: {data.get('technology')}
-🇺🇿 Telegram: @{str(message.from_user.username)}
-📞 Aloqa: {data.get('phone_number')}
-🌐 Hudud: {data.get('location')}
-💰 Narxi: {data.get('price')}
-👨🏻‍💻 Kasbi: {data.get('job')}
-🕰 Murojaat qilish vaqti: {data.get('time')}
-🔎 Maqsad: {data.get('goal')}
-"""
-    if data['button_name'].startswith('Sherik'):
-        text = f"""<b>Sherik kerak:</b>\n\n👨‍💼 Sherik: {data.get('full_name')}
-📚 Texnologiya: {data.get('technology')}
-🇺🇿 Telegram: @{str(message.from_user.username)}
-📞 Aloqa: {data.get('phone_number')}
-🌐 Hudud: {data.get('location')}
-💰 Narxi: {data.get('price')}
-👨🏻‍💻 Kasbi: {data.get('job')}
-🕰 Murojaat qilish vaqti: {data.get('time')}
-🔎 Maqsad: {data.get('goal')}"""
-    await message.answer(text)
-    await message.answer('Saqlandi')
-
-
-@main_router.message(F.text.startswith(('Hodim')))
-async def partner(message: Message, state: FSMContext):
-    await message.answer(_(
-        "<b>Hodim topshirish uchun ariza berish</b>\n\nHozir sizga birnecha savollar beriladi.\n"
-        "Har biriga javob bering. Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va\n"
-        "arizangiz Adminga yuboriladi."
-    ))
-    await state.update_data(button_name=message.text)
-    await state.set_state(Hodim.idora)
-    await message.answer("<b>🎓 Idora nomi??</b>")
+        if data['button_name'].startswith(str(__('Ish'))):
+            text += "<b>Ish joyi kerak:</b>\n\n👨‍💼 Xodim: {full_name}\n".format(full_name=data.get('full_name'))
+        elif data['button_name'].startswith(str(__('Ustoz'))):
+            text += "<b>Ustoz kerak:</b>\n\n👨‍💼 Ustoz: {full_name}\n".format(full_name=data.get('full_name'))
+        else:
+            text += "<b>Shogird kerak:</b>\n\n👨‍💼 Shogird: {full_name}\n".format(full_name=data.get('full_name'))
+        text += "🕑 Yosh: {age}\n📚 Texnologiya: {technology}\n🇺🇿 Telegram: @{telegram}\n📞 Aloqa: {phone_number}\n🌐 Hudud: {hudud}\n💰 Narxi: {price}\n👨🏻‍💻 Kasbi: {job}\n🕰 Murojaat qilish vaqti: {time}\n🔎 Maqsad: {goal}".format(
+            age=data.get('age'), technology=data.get('technology'), telegram=str(message.from_user.username),
+            phone_number=data.get('phone_number'), hudud=data.get('location'), price=data.get('price'),
+            job=data.get('job'),
+            time=data.get('time'),
+            goal=data.get('goal'))
+        await message.answer(text)
+        await message.answer(_('Saqlandi'))
 
 
 @main_router.message(Hodim.idora)
@@ -233,17 +240,21 @@ async def register_goal(message: Message, state: FSMContext):
     await state.update_data(goal=message.text)
     data = await state.get_data()
     await state.clear()
-    text = f"""
-🏢 Idora: {data.get('idora')}
-📚 Texnologiya: {data.get('technology')}
-🇺🇿 Telegram: @{str(message.from_user.username)}
-📞 Aloqa: {data.get('phone_number')}
-🌐 Hudud: {data.get('location')}
-✍️ Mas'ul: {data.get('masul')}
-🕰 Murojaat qilish vaqti: {data.get('time')}
-🕰 Ish vaqti: {data.get('time_worked')}
-💰 Maosh: {data.get('price')}
-‼️ Qo`shimcha: {data.get('another')}
-"""
+    text = """
+    🏢 Idora: {idora}
+    📚 Texnologiya: {technology}
+    🇺🇿 Telegram: @{username}
+    📞 Aloqa: {phone_number}
+    🌐 Hudud: {location}
+    ✍️ Mas'ul: {masul}
+    🕰 Murojaat qilish vaqti: {time}
+    🕰 Ish vaqti: {time_worked}
+    💰 Maosh: {price}
+    ‼️ Qo`shimcha: {another}
+    """.format(idora=data.get('idora'), technology=data.get('technology'), username=message.from_user.username,
+               phone_number=data.get('phone_number'), location=data.get('location'), masul=data.get('masul'),
+               time=data.get('time'), time_worked=data.get('time_worked'), price=data.get('price'),
+               another=data.get('another')
+               )
     await message.answer(text)
-    await message.answer('Saqlandi')
+    await message.answer(_('Saqlandi'))

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-13 10:30+0500\n"
-"PO-Revision-Date: 2024-05-13 10:29+0500\n"
+"POT-Creation-Date: 2024-05-14 22:03+0500\n"
+"PO-Revision-Date: 2024-05-14 15:00+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uz\n"
 "Language-Team: uz <LL@li.org>\n"
@@ -22,28 +22,54 @@ msgstr ""
 msgid "Tilni tanlang: "
 msgstr ""
 
-#: handlers.py:26
+#: handlers.py:28
 msgid "Uzbek tili tanlandi"
 msgstr ""
 
-#: handlers.py:28
+#: handlers.py:30
 msgid "Ingiliz tili tanlandi"
 msgstr ""
 
+#: handlers.py:32
+msgid "Sherik kerak"
+msgstr ""
+
 #: handlers.py:33
+msgid "Ish joyi kerak"
+msgstr ""
+
+#: handlers.py:34
+msgid "Hodim kerak"
+msgstr ""
+
+#: handlers.py:35
+msgid "Ustoz kerak"
+msgstr ""
+
+#: handlers.py:37
+msgid "Shogird kerak"
+msgstr ""
+
+#: handlers.py:39
+msgid ""
+"Assalomu alaykum {first_name} \n"
+"UstozShogird kanalining rasmiy botiga xush kelibsiz!"
+msgstr ""
+
+#: handlers.py:48
 msgid ""
 "<b>{category} topish uchun ariza berish</b>\n"
-"Hozir sizga birnecha savollar beriladi. \n"
-"Har biriga javob bering. \n"
+"Hozir sizga birnecha savollar beriladi.\n"
+"Har biriga javob bering.\n"
 "Oxirida agar hammasi to`g`ri bo`lsa, HA tugmasini bosing va arizangiz "
 "Adminga yuboriladi."
 msgstr ""
 
-#: handlers.py:38
+#: handlers.py:51
 msgid "<b>Ism, familiyangizni kiriting?</b>"
 msgstr ""
 
-#: handlers.py:48 handlers.py:64 handlers.py:175
+#: handlers.py:61 handlers.py:77 handlers.py:184
 msgid ""
 "<b>📚 Texnologiya:</b>\n"
 "\n"
@@ -53,14 +79,14 @@ msgid ""
 "<em>Masalan: Java, C++, C#</em>"
 msgstr ""
 
-#: handlers.py:54
+#: handlers.py:67
 msgid ""
 "<b>🕑 Yosh: </b>\n"
 "\n"
 "Yoshingizni kiriting?Masalan, 19"
 msgstr ""
 
-#: handlers.py:74 handlers.py:185
+#: handlers.py:87 handlers.py:194
 msgid ""
 "<b>📞 Aloqa:</b>\n"
 "\n"
@@ -68,7 +94,7 @@ msgid ""
 "Masalan: +998 90 123 45 67"
 msgstr ""
 
-#: handlers.py:83 handlers.py:194
+#: handlers.py:96 handlers.py:203
 msgid ""
 "<b>🌐 Hudud: </b>\n"
 "\n"
@@ -76,7 +102,7 @@ msgid ""
 "Viloyat nomi, Toshkent shahar yoki Respublikani kiriting."
 msgstr ""
 
-#: handlers.py:92 handlers.py:219
+#: handlers.py:105 handlers.py:228
 msgid ""
 "<b>💰 Narxi:</b>\n"
 "\n"
@@ -84,7 +110,7 @@ msgid ""
 "Kerak bo`lsa, Summani kiriting?"
 msgstr ""
 
-#: handlers.py:101
+#: handlers.py:114
 msgid ""
 "<b>👨🏻‍💻 Kasbi: </b>\n"
 "\n"
@@ -92,7 +118,7 @@ msgid ""
 "Masalan, Talaba"
 msgstr ""
 
-#: handlers.py:110 handlers.py:203
+#: handlers.py:123 handlers.py:212
 msgid ""
 "<b>🕰 Murojaat qilish vaqti: </b>\n"
 "\n"
@@ -100,14 +126,22 @@ msgid ""
 "Masalan, 9:00 - 18:00"
 msgstr ""
 
-#: handlers.py:119
+#: handlers.py:132
 msgid ""
 "<b>🔎 Maqsad: </b>\n"
 "\n"
 "Maqsadingizni qisqacha yozib bering."
 msgstr ""
 
-#: handlers.py:161
+#: handlers.py:165 handlers.py:262
+msgid "Saqlandi"
+msgstr ""
+
+#: handlers.py:168
+msgid "Hodim"
+msgstr ""
+
+#: handlers.py:170
 msgid ""
 "<b>Hodim topshirish uchun ariza berish</b>\n"
 "\n"
@@ -117,11 +151,15 @@ msgid ""
 "arizangiz Adminga yuboriladi."
 msgstr ""
 
-#: handlers.py:212
+#: handlers.py:177
+msgid "<b>🎓 Idora nomi??</b>"
+msgstr ""
+
+#: handlers.py:221
 msgid "<b>🕰 Ish vaqtini kiriting? </b>"
 msgstr ""
 
-#: handlers.py:228
+#: handlers.py:237
 msgid ""
 "<b>‼️ Qo`shimcha ma`lumotlar? </b>\n"
 "\n"
