@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message, InlineKeyboardButton, CallbackQuery, ReplyKeyboardRemove, KeyboardButton
+from aiogram.types import Message, InlineKeyboardButton, CallbackQuery, KeyboardButton
 from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
